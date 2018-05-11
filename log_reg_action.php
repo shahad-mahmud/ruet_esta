@@ -33,6 +33,12 @@
 				$_SESSION['logged'] = "TruE";						//session flag to make user logged in 
 				$_SESSION['uname']  = $DBusername;					//save username into session global
 
+
+				// it is now set for developing pourpous
+				// it means if I am loggged in
+				// i'll be logged into docket entry
+				// or related pourpous now
+				$_SESSION['post']	= "docket";						//i have authonication for docket now.
 				/*
 				THE USER SHOULD BE REDIRECTED TO HIS/HER PAGE FROM HERE
 
