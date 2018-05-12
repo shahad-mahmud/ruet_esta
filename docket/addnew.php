@@ -22,16 +22,10 @@ else{
 			<hr>
 			<label for="file_id">ডকেট নং</label>
 			<input type="text" name="file_id" id="file_id" placeholder="যেমনঃ ১২৩৪"><br>
-			<div id="date_given" style="display: block;">
-				<label for="rcv_date">তারিখ</label>
-				<input type="text" name="rcv_date" id="rcv_date" value="<?php echo date("F j, Y"); ?>" disabled style= "background-color: inherit; border: none; outline: none;">
-				<button type="button" name="change_date" onclick="getdate()">Change</button><br>
-			</div>
-			<div id="get_date" style="display: none;">
-				<label for="rcv_date">তারিখ</label>
-				<input type="date" name="rcv_date" id="rcv_date">
-				<button type="button" name="show_date" onclick="showdate()">Cancel</button><br>
-			</div>
+			<label for="rcv_date">তারিখ</label>
+			<input type="text" name="rcv_date" id="rcv_date" value="<?php echo date('m/d/Y'); ?>" disabled style= "background-color: inherit; border: none; outline: none;">
+			<button type="button" name="change_date" id="change_date" onclick="getdate()">Change</button>
+			<button type="button" name="cancel_update" id="cancel_update" onclick="cancel()" style="display: none">Cancel</button> <br>
 			<hr>
 			জমাদানকারীর তথ্য
 			<hr>
@@ -75,23 +69,62 @@ else{
 		}
 
 		function getdate() {
-			var date_given	= document.getElementById("date_given");		//get date_given section
-			var get_date 	= document.getElementById("get_date");	//get get_date section
+			var date_given	= document.getElementById("rcv_date");		//get date_given section
+			var change_btn	= document.getElementById("change_date");		//get change_btn button
+			var cancel_btn	= document.getElementById("cancel_update");		//get date_given section
+			var today = new Date();
+			
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
 
-			date_given.style.display = "none";						//don't display first section
-			get_date.style.display = "block";						//display second section
+			if(dd<10) {
+			    dd = '0'+dd
+			} 
+
+			if(mm<10) {
+			    mm = '0'+mm
+			} 
+
+			today = yyyy + '-' + mm + '-' + dd;
+
+			change_btn.style.display = "none";						//don't display first section
+			cancel_btn.style.display = "inline-block";						//display second section
+
+			date_given.type = "date";
+			date_given.value = today;
+			date_given.disabled = false;
+			date_given.style.border = "";
 		}
 
-		function showdate() {
-			var date_given	= document.getElementById("date_given");		//get date_given section
-			var get_date 	= document.getElementById("get_date");	//get get_date section
+		function cancel() {
+			var date_given	= document.getElementById("rcv_date");		//get date_given section
+			var change_btn	= document.getElementById("change_date");		//get change_btn button
+			var cancel_btn	= document.getElementById("cancel_update");		//get date_given section
+			var today = new Date();
+			
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
 
-			date_given.style.display = "block";						//don't display first section
-			get_date.style.display = "none";						//display second section
+			if(dd<10) {
+			    dd = '0'+dd
+			} 
 
-			get_date.value 	=	date_given.value;
+			if(mm<10) {
+			    mm = '0'+mm
+			} 
+
+			today = yyyy + '-' + mm + '-' + dd;
+
+			change_btn.style.display = "inline-block";						//don't display first section
+			cancel_btn.style.display = "none";						//display second section
+
+			date_given.type = "date";
+			date_given.value = today;
+			date_given.disabled = true;
+			date_given.style.border = "none";
 		}
-
 	</script>
 </body>
 </html>
