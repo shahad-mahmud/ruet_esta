@@ -11,7 +11,7 @@
 	 		$remember	= $_POST['remember'];
 	 	}
 	 	//the selecting sql
-	 	$sql			= "SELECT `user_name`,`user_password` FROM `users` WHERE `user_name` = '$name'";
+	 	$sql			= "SELECT `user_name`,`user_password`,`emp_id` FROM `users` WHERE `user_name` = '$name'";
 	 	
 	 	$query		= $connection->query($sql);						//execute the query
 	 	$row_count = mysqli_num_rows($query); 						//how many users having the user name
@@ -24,6 +24,7 @@
 
 	 		$DBusername = $row['user_name']; 						//username saved into database
 			$DBpassword = $row['user_password']; 					//password saved into database
+			$DBempId	= $row['emp_id'];							//employee id saved into database
 
 			if(($name == $DBusername) and ($pass == $DBpassword)) 	//if username and password combination matches
 			{
@@ -32,6 +33,7 @@
 				session_start();									//session starts
 				$_SESSION['logged'] = "TruE";						//session flag to make user logged in 
 				$_SESSION['uname']  = $DBusername;					//save username into session global
+				$_SESSION['empID']	= $DBempId;
 
 
 				// it is now set for developing pourpous
