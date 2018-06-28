@@ -55,11 +55,24 @@ else{
 
 			if($query)
 			{
-				echo "Dhukche!! baccha hobe";
+				$date = date("Y/m/d");
+				$sql	= "INSERT INTO `move_history`(`docket_id`, `date`, `time`, `destination_id`) VALUES ('$docket_id','$date','$time',10)"; //query to insert into the move history table
+				$query	= $connection->query($sql);						//execute the query
+
+				if($query)
+				{
+					echo "sfdsdfsdfsdfsdf".mysqli_error($connection)."\n";
+				}
+				else
+				{
+					echo "neeee\n";
+				}
+
+				echo "Dhukche!! baccha hobe".mysqli_error($connection)."\n";
 			}
 			else
 			{
-				echo "dhuke nai! baccha hobe na.";
+				echo "dhuke nai! baccha hobe na.".mysqli_error($connection)."\n";
 
 			}
 		}
