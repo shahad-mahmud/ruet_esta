@@ -16,15 +16,11 @@ else{
 	$data		= $connection->query($sql);						//execute the sql query
 	$files 		= $connection->query($sql_file);				//execute the sql_file query
 	$destinations = $connection->query($sql3);						//execute the sql3 
+	$des 		= array();
 
 	while ($row = $destinations -> fetch_assoc())  //get all destinations in a array
-	{
-		$des = array();
+	{	
 		$des[$row['destination_id']] = $row['destination_name'];
-		// foreach($des as $x => $x_value) {
-	 //    echo "Key=" . $x . ", Value=" . $x_value;
-	 //    echo "<br>";
-	// }
 	}
 
 	//--------------handeling actions-------------------
@@ -44,7 +40,7 @@ else{
 
 					date_default_timezone_set("Asia/Dhaka");
 					$date = date("Y/m/d");
-					$time = date("h:i:sa");
+					$time = date("H:i:sa");
 
 					$sql1		= "UPDATE `docket` SET `on_move`=11, `sent_from` = '10_11' WHERE `docket_id` = '$id'";
 					$sql2		= "INSERT INTO `move_history`(`docket_id`, `destination_id`, `date`, `time`) VALUES ('$id',11,'$date','$time')";
@@ -203,8 +199,8 @@ else{
 			var select = document.getElementById(elementID);
 			var value = select.value;
 
-			// console.log(elementID);
-			// console.log(value);
+			console.log(elementID);
+			console.log(value);
 			window.location.href = "index.php?action=AddToFile&ref="+value+"&id="+id;
 		}
 	</script>
