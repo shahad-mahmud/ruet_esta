@@ -43,8 +43,7 @@ else{
 					$time = date("H:i:sa");
 
 					$sql1		= "UPDATE `docket` SET `on_move`=11, `sent_from` = '10_11' WHERE `docket_id` = '$id'";
-					$sql2		= "INSERT INTO `move_history`(`docket_id`, `destination_id`, `date`, `time`) VALUES ('$id',11,'$date','$time')";
-
+					$sql2		= "INSERT INTO `move_history`(`docket_id`, `sent_from`, `destination_id`, `if_received`, `date`, `time`) VALUES ('$id', 10,11, 0, '$date','$time' )";
 					if($connection->query($sql1) && $connection->query($sql2))
 					{
 						echo "success";
@@ -106,9 +105,27 @@ else{
 <html>
 <head>
 	<title>Docket || ES RUET</title>
+
+	<link rel="stylesheet" href="index.css">
 </head>
 <body>
-<a href="addnew.php">Add new</a>
+</head>
+<body>
+
+<div class="header">
+  <img src="logo.png" alt="logo">
+  <h1> <b> Establishment Department </b> </h1>
+    <h2> Rajshahi University of Engineering and Technology </h2>
+  </div>
+
+  <div class="nav">
+    <ul>
+      <li> <a href="#">log out </a> </li>
+      <li> <a href="addnew.php">Add new</a> </li>
+    </ul>
+  </div>
+
+
 
 	<table>
 		<thead>

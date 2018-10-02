@@ -91,12 +91,28 @@ else{
 <html>
 <head>
 	<title>Add New | Docket || ES RUET</title>
+
+	<link rel="stylesheet" href="addnew.css">
 </head>
 <body>
+
+<div class="header">
+  <img src="logo.png" alt="logo">
+  <h1> <b> Establishment Department </b> </h1>
+    <h2> Rajshahi University of Engineering and Technology </h2>
+  </div>
+
+  <div class="nav">
+    <ul>
+      <li> <a href="#">log out </a> </li>
+    </ul>
+  </div>
+
+  <div class="container">
 	<form action="" method="post" enctype="multipart/form-data">
 		<div id="first" style="display: block;">
 
-			ডকেট সংক্রান্ত তথ্য
+			<b> ডকেট সংক্রান্ত তথ্য </b>
 			<hr>
 			<label for="docket_id">ডকেট নং</label>
 			<input type="text" name="docket_id" id="docket_id" placeholder="যেমনঃ ১২৩৪"><br>
@@ -115,10 +131,10 @@ else{
 			<label for="depositor_email">ইমেইল</label>
 			<input type="text" name="depositor_email" id="depositor_email" placeholder="যেমনঃ abc@xyz.com"><br>
 
-			joma grohon
+			<b> joma grohon </b>
 			<hr>
-			<label for="emp_name">নাম</label>
-			<input type="text" name="emp_name" id="emp_name" value="<?php echo $empName; ?>" disabled style= "background-color: inherit; border: none; outline: none;"><br>
+			<label for="emp_name">নাম</label>	
+			<input type="text" name="emp_name" id="emp_name" value="<?php echo $empName; ?>" disabled><br>
 			<label for="rcv_date">তারিখ</label>
 			<input type="date" name="rcv_date" id="rcv_date" value="<?php echo date('Y-m-d'); ?>" style= "background-color: inherit; border: none; outline: none;">
 			<!-- <button type="button" name="change_date" id="change_date" onclick="getdate()">Change</button>
@@ -126,7 +142,7 @@ else{
 			
 
 			<br>
-			<button type="reset">Reset</button>
+			<button type="reset" style=" background-color: #f44336;">Reset</button>
 			<!-- <button type="button" onclick="secondsection()">Next</button> -->
 			<button type="submit" name="submit">Submit</button>
 		</div>
@@ -135,6 +151,7 @@ else{
 			<button type="button" onclick="firstsection()">Previous</button>
 		</div> -->
 	</form>
+	</div>
 
 	<script type="text/javascript">
 		function secondsection() {

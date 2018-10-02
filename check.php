@@ -1,12 +1,5 @@
 <?php //check if logged into docket or not
 	session_start();
-
-if( !(isset($_SESSION['uname']) && $_SESSION['logged'] == "TruE" && $_SESSION['post'] == "docket" )) //logged in for docket??
-{
-	echo "Please login first";
-}
-else{ 
-
 	require("/opt/lampp/htdocs/ruet_esta/db.php");
 	date_default_timezone_set("Asia/Dhaka");
 	$date = date("Y/m/d");
@@ -21,7 +14,7 @@ else{
 			if(isset($_GET['id']))
 			{
 				$id 	= $_GET['id'];
-				$a_sql	= "SELECT destinations.destination_name FROM destinations, move_history WHERE destinations.destination_id = move_history.destination_id AND move_history.docket_id = '$id' ORDER BY (move_history.date AND move_history.time)";
+				$a_sql	= "SELECT destinations.destination_name FROM destinations, move_history WHERE destinations.destination_id = move_history.destination_id AND move_history.docket_id = '$id' ORDER BY move_history.date, move_history.time";
 
 				$query		= $connection->query($a_sql);	
 				if($query)
@@ -30,7 +23,11 @@ else{
 					$query -> data_seek(0);
 					$row = $query -> fetch_assoc();
 
-					if($row_count == 1)
+					if($row_count == 0)
+					{
+						echo "দুঃখিত! এই নম্বরের কোন ডকেট পাওয়া যায়নি। ";
+					}
+					else if($row_count == 1)
 					{
 						echo "আপনার ডকেটটি <b>".$row['destination_name']."</b> এর নিকট রয়েছে।";
 					}
@@ -87,7 +84,7 @@ else{
 
 				window.location.href = "check.php?action=search&id="+value;
 
-				console.log(value);
+				//console.log(value);
 			}
 
 		</script>
@@ -95,6 +92,3 @@ else{
 	</html>
 
 	
-<?php //php else ends here
-	} 
-?>

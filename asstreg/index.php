@@ -20,7 +20,6 @@ else{
 					    destinations.destination_name,
 					    move_history.date,
 					    move_history.time,
-					    move_history.destination_id,
 					    move_history.if_received,
 					    docket.sent_from
 					FROM
@@ -29,7 +28,7 @@ else{
 					    destinations,
 					    docket
 					WHERE
-					    move_history.docket_id = docket.docket_id AND docket.file_holder_no = file_holder.file_holder_no AND move_history.sent_from = destinations.destination_id AND move_history.destination_id = 11
+					    move_history.docket_id = docket.docket_id AND docket.file_holder_no = file_holder.file_holder_no AND move_history.sent_from = destinations.destination_id AND move_history.destination_id = 12
 					ORDER BY
 					    move_history.date
 					DESC
@@ -90,7 +89,7 @@ else{
 					echo $cs;
 
 					$sql		= "UPDATE `move_history` SET `if_received`='$ref' WHERE `history_id` = '$cs'";
-					$sql2		= "INSERT INTO `move_history`(`docket_id`, `sent_from`, `destination_id`, `if_received`, `date`, `time`) VALUES ('$id', 11, '$ref', 0, '$date','$time' )";
+					$sql2		= "INSERT INTO `move_history`(`docket_id`, `sent_from`, `destination_id`, `if_received`, `date`, `time`) VALUES ('$id', 12, '$ref', 0, '$date','$time' )";
 					if($connection->query($sql) && $connection->query($sql2))
 					{
 						echo "success";
@@ -121,7 +120,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Section || ES RUET</title>
+	<title>Assistant Register || ES RUET</title>
 
 	<link rel="stylesheet" href="index.css">
 </head>
@@ -139,13 +138,13 @@ else{
     </ul>
   </div>
 
-
+  
 	<table>
 		<thead>
 			<tr>
 				<th>Docket No.</th>
 				<th>File Name</th>
-				<th>Sent from</th>
+				<th>Received from</th>
 				<th>date</th>
 				<th>time</th>		        	
 				<th>Action</th>
@@ -174,44 +173,38 @@ else{
 								else if($row['if_received'] == 1)
 								{ 
 
-									// $info 	= $row['sent_from']; 
-									// $ln 	= strlen($info);
-									// $flag	= false;
+									$info 	= $row['sent_from']; 
+									$ln 	= strlen($info);
+									$flag	= false;
 
-									// for($i = 0; $i < $ln; $i = $i+5)
-									// {
-									// 	$sub  = substr($info, $i, 5);
-									// 	$sub1 = substr($info, $i, 3);
+									for($i = 0; $i < $ln; $i = $i+5)
+									{
+										$sub  = substr($info, $i, 5);
+										$sub1 = substr($info, $i, 3);
 
-									// 	if($sub1 == "11_")
-									// 	{
-									// 		$des_sub = substr($sub, 3, 2);
-									// 		echo $des[$des_sub]." এর কাছে প্রেরিত";
-									// 		$flag = true;
-									// 		break;
-									// 	}
-									// }
+										if($sub1 == "12_")
+										{
+											$des_sub = substr($sub, 3, 2);
+											echo $des[$des_sub]." এর কাছে প্রেরিত";
+											$flag = true;
+											break;
+										}
+									}
 
-									// if($flag == false ){
+									if($flag == false ){
 									?>
 									
-									<select name="send" id="send<?php echo $row['docket_id']; ?>" onchange="sendFunc('<?php echo $row['docket_id']; ?>', '<?php echo $row['history_id']; ?>')">
+									<select name="send" id="send<?php echo $row['docket_id']; ?>" onchange="sendFunc('<?php echo $row['docket_id']; ?>', '<?php echo $row['sent_from']; ?>')">
 										
 										<option disabled selected="true">Send to</option>
 										<option value="10">ডকেট এন্ট্রি</option>
-										<option value="12">অ্যাসিস্ট্যান্ট রেজিস্টার</option>
+										<option value="11">সেকশন অফিসার</option>
 										<option value="13">অ্যাডিশনাল রেজিস্টার</option>
 										<option value="14">ডেপুটি রেজিস্টার</option>
 
 									</select>
 
-								<?php //} 
-								}
-
-								else if($row['if_received'] > 1)
-								{
-									echo $des[$row['if_received']]." এর কাছে প্রেরিত";
-								}
+								<?php } }
 
 							?>
 							
@@ -233,7 +226,7 @@ else{
 			window.location.href = "index.php?action=cr&ref="+id;
 		}
 
-		function sendFunc(id, h_id)
+		function sendFunc(id, crnt)
 		{
 			id = decodeURI(id);
 			var elementID = "send"+id;
@@ -244,8 +237,8 @@ else{
 			var value = select.value;
 
 			//console.log(elementID);
-			//console.log(h_id);
-			window.location.href = "index.php?action=send&ref="+value+"&id="+id+"&cs="+h_id; //cs = current status
+			//console.log(crnt);
+			window.location.href = "index.php?action=send&ref="+value+"&id="+id+"&cs="+crnt; //cs = current status
 		}
 	</script>
 </body>
