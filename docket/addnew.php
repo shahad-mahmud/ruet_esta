@@ -61,24 +61,26 @@ else{
 
 				if($query)
 				{
-					echo "sfdsdfsdfsdfsdf".mysqli_error($connection)."\n";
+					//echo "sfdsdfsdfsdfsdf".mysqli_error($connection)."\n";
 				}
 				else
 				{
-					echo "neeee\n";
+					//echo "neeee\n";
 				}
 
-				echo "Dhukche!! baccha hobe".mysqli_error($connection)."\n";
+				header("Location: index.php");
+				
+				//echo "Dhukche!! baccha hobe".mysqli_error($connection)."\n";
 			}
 			else
 			{
-				echo "dhuke nai! baccha hobe na.".mysqli_error($connection)."\n";
+				//echo "dhuke nai! baccha hobe na.".mysqli_error($connection)."\n";
 
 			}
 		}
 		else
 		{
-			echo "dhuke nai! baccha hobe na.";
+			//echo "dhuke nai! baccha hobe na.";
 			$sql	= "DELETE FROM `received_form` WHERE `rcv_id` = '$rcv_id'"; //query to delet record from the receiver table
 			$query	= $connection->query($sql);						//execute the query
 		}
@@ -115,7 +117,7 @@ else{
 			<b> ডকেট সংক্রান্ত তথ্য </b>
 			<hr>
 			<label for="docket_id">ডকেট নং</label>
-			<input type="text" name="docket_id" id="docket_id" placeholder="যেমনঃ ১২৩৪"><br>
+			<input type="text" name="docket_id" id="docket_id" placeholder="যেমনঃ ১২৩৪" required><br>
 			
 			জমাদানকারীর তথ্য
 			<hr>

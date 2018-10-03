@@ -35,7 +35,17 @@
 				$_SESSION['uname']  = $DBusername;					//save username into session global
 				$_SESSION['empID']	= $DBempId;
 
+				$sql = "SELECT esta_employees.emp_id, destinations.post_name FROM destinations, esta_employees WHERE esta_employees.emp_id = '$DBempId' and esta_employees.post_id = destinations.destination_id";
 
+				$query		= $connection->query($sql);						//execute the query
+	 			$row_count = mysqli_num_rows($query); 
+
+	 			if($row_count > 0)
+	 			{
+	 				$row = $query->fetch_assoc();
+
+ 					header("Location: ".$row['post_name']."/index.php");
+	 			}
 				// it is now set for developing pourpous
 				// it means if I am loggged in
 				// i'll be logged into docket entry

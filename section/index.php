@@ -135,7 +135,7 @@ else{
 
   <div class="nav">
     <ul>
-      <li> <a href="#">log out </a> </li>
+      <li> <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/ruet_esta/logout.php">log out </a> </li>
     </ul>
   </div>
 
