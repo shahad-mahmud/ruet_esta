@@ -1,7 +1,7 @@
 <?php //check if logged into docket or not
 	session_start();
 
-if( !(isset($_SESSION['uname']) && $_SESSION['logged'] == "TruE" && $_SESSION['post'] == "docket" )) //logged in for docket??
+if( !(isset($_SESSION['uname']) && $_SESSION['logged'] == "TruE" && $_SESSION['post'] == "section" )) //logged in for docket??
 {
 	echo "Please login first";
 }

@@ -1,0 +1,49 @@
+body{
+  margin: 0;
+  background-color: #998E8C;
+}
+
+input[type=text], input[type=password] {
+   width: 60%;
+   padding: 12px 20px;
+   margin: 8px 0;
+   display: inline-block;
+   border: 1px solid #ccc;
+   box-sizing: border-box;
+   border-radius: 4px;
+   background-color: #F0E9E7;
+}
+
+/* Set a style for all buttons */
+button {
+   background-color: #F0755B;
+   color: white;
+   padding: 12px 20px;
+   margin: 8px 0;
+   border: none;
+   cursor: pointer;
+   width: auto;
+   border-radius: 4px;
+   font-weight: bold;
+   font-size: 15px;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+   opacity: 0.8;
+}
+
+#main{
+	margin-left: 25%;
+	padding-top: 10%;
+	background-color: none;
+}
+
+#search_div{
+	color: white;
+	font-size: 20px;
+	max-width: 80%;
+	margin-left: 10%;
+	margin-top: 10%;
+	padding: 8px;
+}

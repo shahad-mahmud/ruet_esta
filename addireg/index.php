@@ -1,7 +1,7 @@
 <?php //check if logged into docket or not
 	session_start();
 
-if( !(isset($_SESSION['uname']) && $_SESSION['logged'] == "TruE" && $_SESSION['post'] == "asstreg" )) //logged in for docket??
+if( !(isset($_SESSION['uname']) && $_SESSION['logged'] == "TruE" && $_SESSION['post'] == "addireg" )) //logged in for docket??
 {
 	echo "Please login first";
 }
@@ -28,7 +28,7 @@ else{
 					    destinations,
 					    docket
 					WHERE
-					    move_history.docket_id = docket.docket_id AND docket.file_holder_no = file_holder.file_holder_no AND move_history.sent_from = destinations.destination_id AND move_history.destination_id = 12
+					    move_history.docket_id = docket.docket_id AND docket.file_holder_no = file_holder.file_holder_no AND move_history.sent_from = destinations.destination_id AND move_history.destination_id = 13
 					ORDER BY
 					    move_history.date
 					DESC
@@ -89,7 +89,7 @@ else{
 					echo $cs;
 
 					$sql		= "UPDATE `move_history` SET `if_received`='$ref' WHERE `history_id` = '$cs'";
-					$sql2		= "INSERT INTO `move_history`(`docket_id`, `sent_from`, `destination_id`, `if_received`, `date`, `time`) VALUES ('$id', 12, '$ref', 0, '$date','$time' )";
+					$sql2		= "INSERT INTO `move_history`(`docket_id`, `sent_from`, `destination_id`, `if_received`, `date`, `time`) VALUES ('$id', 13, '$ref', 0, '$date','$time' )";
 					if($connection->query($sql) && $connection->query($sql2))
 					{
 						echo "success";
@@ -199,8 +199,9 @@ else{
 										<option disabled selected="true">Send to</option>
 										<option value="10">ডকেট এন্ট্রি</option>
 										<option value="11">সেকশন অফিসার</option>
-										<option value="13">অ্যাডিশনাল রেজিস্টার</option>
+										<option value="12">অ্যাসিস্ট্যান্ট রেজিস্টার</option>
 										<option value="14">ডেপুটি রেজিস্টার</option>
+										<option value="15">রেজিস্টার</option>
 
 									</select>
 

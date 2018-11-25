@@ -45,12 +45,13 @@
 	 				$row = $query->fetch_assoc();
 
  					header("Location: ".$row['post_name']."/index.php");
+ 					$_SESSION['post']	= $row['post_name'];	
 	 			}
 				// it is now set for developing pourpous
 				// it means if I am loggged in
 				// i'll be logged into docket entry
 				// or related pourpous now
-				$_SESSION['post']	= "docket";						//i have authonication for docket now.
+									//i have authonication for docket now.
 				/*
 				THE USER SHOULD BE REDIRECTED TO HIS/HER PAGE FROM HERE
 
